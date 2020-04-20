@@ -1,10 +1,15 @@
 package me.codegamertech.worldgen;
 
 import me.codegamertech.worldgen.generation.GenManager;
+import me.codegamertech.worldgen.generation.HugeOreStructure;
 import me.codegamertech.worldgen.generation.SurvivalCampStructure;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -12,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import static org.bukkit.Bukkit.getPluginManager;
 
-public class SpigotVenture extends JavaPlugin implements Listener {
+public class SpigotVenture extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
@@ -27,14 +32,19 @@ public class SpigotVenture extends JavaPlugin implements Listener {
         SurvivalCampStructure.biomeCampsite.put(Biome.BEACH, SurvivalCampStructure.campsiteDesert);
         System.out.println(SurvivalCampStructure.biomeCampsite);
 
-        getPluginManager().registerEvents(this, this);
+        this.getCommand("debugcmd").setExecutor(this);
+
+        getPluginManager().registerEvents(new GenManager(), this);
     }
 
-    @EventHandler
-    public void worldLoadEvent(WorldLoadEvent event) {
-        World world = event.getWorld();
-        if (world != Bukkit.getWorld("world")) return;
-        world.getPopulators().add(new GenManager());
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        sender.sendMessage("- DEBUG - ");
+        sender.sendMessage("HugeOReStructure Array- ");
+        for(Location loc : HugeOreStructure.hugeOreStructures) {
+            sender.sendMessage("HOS Registered at location: " + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
+        }
+        return true;
     }
 
 }

@@ -14,7 +14,6 @@ public class HugeOreStructure {
     public static ArrayList<Location> hugeOreStructures = new ArrayList<Location>();
 
     public HugeOreStructure(World world, Random random, Chunk chunk) {
-        System.out.println("dong");
 
         int centerX = (chunk.getX() << 4) + random.nextInt(16);
         int centerZ = (chunk.getZ() << 4) + random.nextInt(16);
@@ -41,7 +40,7 @@ public class HugeOreStructure {
             }
         }
 
-        System.out.println(top.getLocation());
+        hugeOreStructures.add(top.getLocation());
     }
 
 }

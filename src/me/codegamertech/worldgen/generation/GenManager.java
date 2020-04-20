@@ -1,23 +1,26 @@
 package me.codegamertech.worldgen.generation;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.generator.BlockPopulator;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkPopulateEvent;
 
 import java.util.Random;
 
-public class GenManager extends BlockPopulator {
+public class GenManager implements Listener {
 
-    @Override
-    public void populate(World world, Random random, Chunk chunk) {
+    @EventHandler
+    public void populate(ChunkPopulateEvent event) {
+        Random random = new Random();
+
         if(random.nextInt(200) < 40) {
-            new SurvivalCampStructure(world, random, chunk);
+            new SurvivalCampStructure(event.getWorld(), random, event.getChunk());
         }
 
-        if(random.nextInt(200) < 20) {
+        /*if(random.nextInt(200) < 20) {
             new HugeOreStructure(world, random, chunk);
-        }
+        }*/
     }
 
 }

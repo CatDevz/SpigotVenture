@@ -3,3 +3,8 @@ main: me.codegamertech.worldgen.SpigotVenture
 version: 1.0
 load: startup
 api-version: 1.13
+
+commands:
+  debugcmd:
+    usage: /debugcmd
+    description: prints out debug stuff
