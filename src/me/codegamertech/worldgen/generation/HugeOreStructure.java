@@ -12,6 +12,7 @@ import java.util.Random;
 public class HugeOreStructure {
 
     public static ArrayList<Location> hugeOreStructures = new ArrayList<Location>();
+    public static ArrayList<Location> hugeOreStructuresUSED = new ArrayList<Location>();
 
     public HugeOreStructure(World world, Random random, Chunk chunk) {
 

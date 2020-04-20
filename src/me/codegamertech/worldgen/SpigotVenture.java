@@ -3,16 +3,11 @@ package me.codegamertech.worldgen;
 import me.codegamertech.worldgen.generation.GenManager;
 import me.codegamertech.worldgen.generation.HugeOreStructure;
 import me.codegamertech.worldgen.generation.SurvivalCampStructure;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static org.bukkit.Bukkit.getPluginManager;
@@ -30,7 +25,6 @@ public class SpigotVenture extends JavaPlugin implements CommandExecutor {
         SurvivalCampStructure.biomeCampsite.put(Biome.DARK_FOREST, SurvivalCampStructure.campsiteDarkOak);
         SurvivalCampStructure.biomeCampsite.put(Biome.DESERT, SurvivalCampStructure.campsiteDesert);
         SurvivalCampStructure.biomeCampsite.put(Biome.BEACH, SurvivalCampStructure.campsiteDesert);
-        System.out.println(SurvivalCampStructure.biomeCampsite);
 
         this.getCommand("debugcmd").setExecutor(this);
 
@@ -43,6 +37,11 @@ public class SpigotVenture extends JavaPlugin implements CommandExecutor {
         sender.sendMessage("HugeOReStructure Array- ");
         for(Location loc : HugeOreStructure.hugeOreStructures) {
             sender.sendMessage("HOS Registered at location: " + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
+        }
+
+        sender.sendMessage("OCCUPIED HugeOReStructure Array- ");
+        for(Location loc : HugeOreStructure.hugeOreStructuresUSED) {
+            sender.sendMessage("OCCUPIED HOS Registered at location: " + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
         }
         return true;
     }
